@@ -5,8 +5,8 @@
   "author": "hamabe",
   "license": "MIT",
   "private": true,
-  "script": {
-    "dev": "ts-node-dev --transpile-only --no-notify api/index.ts",
+  "scripts": {
+    "dev": "ts-node-dev --transpile-only --no-notify src/index.ts",
     "build": "tsc",
     "lint-fix": "eslint --fix './src/**/*.{js,ts}' && prettier --write './src/**/*.{js,ts}'"
   },
