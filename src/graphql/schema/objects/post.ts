@@ -18,8 +18,8 @@ export const PostQuery = extendType({
   definition(t) {
     t.nonNull.list.field('allPosts', {
       type: 'Post',
-      resolve(_root, _args, ctx) {
-        return ctx.db.posts
+      async resolve(_root, _args, ctx) {
+        return await ctx.db.post.findMany()
       }
     })
   }
@@ -34,15 +34,14 @@ export const PostMutation = extendType({
         title: nonNull(stringArg()),
         body: nonNull(stringArg())
       },
-      resolve(_root, args, ctx) {
+      async resolve(_root, args, ctx) {
         const newPost = {
           id: v4(),
           title: args.title,
           body: args.body,
           archive: false
         }
-        ctx.db.posts.push(newPost)
-        return newPost
+        return await ctx.db.post.create({ data: newPost })
       }
     })
 
@@ -51,14 +50,14 @@ export const PostMutation = extendType({
       args: {
         id: nonNull(stringArg())
       },
-      resolve(_root, arg, ctx) {
-        const targetPost = ctx.db.posts.find((post) => post.id === arg.id)
+      async resolve(_root, arg, ctx) {
+        const targetPost = await ctx.db.post.findUnique({ where: { id: arg.id } })
         if (!targetPost) {
           throw new Error('投稿が存在しません。')
         }
 
         targetPost.archive = true
-        return targetPost
+        return await ctx.db.post.update({ where: { id: arg.id }, data: targetPost })
       }
     })
   }

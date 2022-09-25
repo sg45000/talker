@@ -10,6 +10,7 @@
     "build": "tsc",
     "lint-fix": "eslint --fix './src/**/*.{js,ts}' && prettier --write './src/**/*.{js,ts}'",
     "prisma:studio": "prisma studio",
+    "prisma:generate": "prisma generate",
     "generate": "ts-node --transpile-only src/graphql/schema",
     "test": "yarn run generate && jest"
   },
