@@ -1,4 +1,5 @@
-import { objectType } from 'nexus'
+import { nonNull, objectType, stringArg } from 'nexus'
+import { v4 } from 'uuid'
 
 import { extendType } from 'nexus'
 
@@ -19,6 +20,29 @@ export const PostQuery = extendType({
       type: 'Post',
       resolve(_root, _args, ctx) {
         return ctx.db.posts
+      }
+    })
+  }
+})
+
+export const PostMutation = extendType({
+  type: 'Mutation',
+  definition(t) {
+    t.nonNull.field('createPost', {
+      type: 'Post',
+      args: {
+        title: nonNull(stringArg()),
+        body: nonNull(stringArg())
+      },
+      resolve(_root, args, ctx) {
+        const newPost = {
+          id: v4(),
+          title: args.title,
+          body: args.body,
+          archive: false
+        }
+        ctx.db.posts.push(newPost)
+        return newPost
       }
     })
   }

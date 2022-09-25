@@ -28,6 +28,7 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Mutation: {};
   Post: { // root type
     archive?: boolean | null; // Boolean
     body?: string | null; // String
@@ -48,6 +49,9 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Mutation: { // field return type
+    createPost: NexusGenRootTypes['Post']; // Post!
+  }
   Post: { // field return type
     archive: boolean | null; // Boolean
     body: string | null; // String
@@ -60,6 +64,9 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Mutation: { // field return type name
+    createPost: 'Post'
+  }
   Post: { // field return type name
     archive: 'Boolean'
     body: 'String'
@@ -72,6 +79,12 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    createPost: { // args
+      body: string; // String!
+      title: string; // String!
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {
