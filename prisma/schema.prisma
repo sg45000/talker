@@ -10,9 +10,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
+model Member {
   id        String @id
   firstName String
   lastName  String
   gender    String
+}
+
+model Post {
+  id      String  @id
+  title   String
+  body    String
+  archive Boolean
 }
