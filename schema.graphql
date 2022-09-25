@@ -10,5 +10,5 @@ type Post {
 }
 
 type Query {
-  drafts: [Post]!
+  allPosts: [Post]!
 }

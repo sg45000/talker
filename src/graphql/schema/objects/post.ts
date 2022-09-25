@@ -15,10 +15,10 @@ export const Post = objectType({
 export const PostQuery = extendType({
   type: 'Query',
   definition(t) {
-    t.nonNull.list.field('drafts', {
+    t.nonNull.list.field('allPosts', {
       type: 'Post',
-      resolve() {
-        return [{ id: '890814bf-f603-490f-8727-32f23bea21c8', title: 'AAA', body: 'BBB', archive: false }]
+      resolve(_root, _args, ctx) {
+        return ctx.db.posts
       }
     })
   }

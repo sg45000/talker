@@ -55,7 +55,7 @@ export interface NexusGenFieldTypes {
     title: string | null; // String
   }
   Query: { // field return type
-    drafts: Array<NexusGenRootTypes['Post'] | null>; // [Post]!
+    allPosts: Array<NexusGenRootTypes['Post'] | null>; // [Post]!
   }
 }
 
@@ -67,7 +67,7 @@ export interface NexusGenFieldTypeNames {
     title: 'String'
   }
   Query: { // field return type name
-    drafts: 'Post'
+    allPosts: 'Post'
   }
 }
 
