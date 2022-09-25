@@ -3,6 +3,7 @@
 
 
 type Mutation {
+  archivePost(id: String!): Post
   createPost(body: String!, title: String!): Post!
 }
 

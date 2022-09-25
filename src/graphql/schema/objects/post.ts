@@ -45,5 +45,21 @@ export const PostMutation = extendType({
         return newPost
       }
     })
+
+    t.field('archivePost', {
+      type: 'Post',
+      args: {
+        id: nonNull(stringArg())
+      },
+      resolve(_root, arg, ctx) {
+        const targetPost = ctx.db.posts.find((post) => post.id === arg.id)
+        if (!targetPost) {
+          throw new Error('投稿が存在しません。')
+        }
+
+        targetPost.archive = true
+        return targetPost
+      }
+    })
   }
 })
