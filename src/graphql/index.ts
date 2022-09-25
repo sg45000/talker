@@ -7,5 +7,9 @@ export const schema = makeSchema({
   outputs: {
     typegen: join(__dirname, 'types', 'typegen.ts'),
     schema: join(__dirname, '..', '..', 'schema.graphql') // SDL
+  },
+  contextType: {
+    module: join(__dirname, 'context.ts'),
+    export: 'Context'
   }
 })
