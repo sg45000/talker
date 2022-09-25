@@ -46,7 +46,7 @@ export const PostMutation = extendType({
       }
     })
 
-    t.field('archivePost', {
+    t.nonNull.field('archivePost', {
       type: 'Post',
       args: {
         id: nonNull(stringArg())
